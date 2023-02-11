@@ -29,7 +29,7 @@ function setTime() {
     secondsLeft--;
     timerEl.textContent = secondsLeft;
 
-    if (secondsLeft === 1) {
+    if (secondsLeft === 0 || secondsLeft < 0) {
       clearInterval(timerInterval);
     }
   }, 1000);
@@ -44,6 +44,46 @@ function startQuiz(event) {
   });
 }
 
+// function question1(event) {
+//   document.querySelector("#query").textContent =
+//     "How many fingers do pandas have?";
+//   queryEl.setAttribute("style", "display: block");
+//   document.querySelector("#a").textContent = "5";
+//   aEl.setAttribute("style", "display: block");
+//   document.querySelector("#b").textContent = "6";
+//   bEl.setAttribute("style", "display: block");
+//   document.querySelector("#c").textContent = "8";
+//   cEl.setAttribute("style", "display: block");
+//   document.querySelector("#d").textContent = "12";
+//   dEl.setAttribute("style", "display: block");
+//   aEl.addEventListener("click", function a(event) {
+//     document.querySelector("#a").textContent = "WRONG!";
+//     aEl.setAttribute("style", "background-color: red; display: block");
+//     secondsLeft -= 5;
+//     wrong.play();
+//     setTimeout(question2, 750);
+//   });
+//   bEl.addEventListener("click", function b(event) {
+//     document.querySelector("#b").textContent = "WRONG!";
+//     bEl.setAttribute("style", "background-color: red; display: block");
+//     secondsLeft -= 5;
+//     wrong.play();
+//     setTimeout(question2, 750);
+//   });
+//   cEl.addEventListener("click", function c(event) {
+//     document.querySelector("#c").textContent = "WRONG!";
+//     cEl.setAttribute("style", "background-color: red; display: block");
+//     secondsLeft -= 5;
+//     wrong.play();
+//     setTimeout(question2, 750);
+//   });
+//   dEl.addEventListener("click", function d(event) {
+//     document.querySelector("#d").textContent = "CORRECT!";
+//     dEl.setAttribute("style", "background-color: green; display: block");
+//     right.play();
+//     setTimeout(question2, 750);
+//   });
+
 function question1(event) {
   document.querySelector("#query").textContent =
     "How many fingers do pandas have?";
@@ -56,36 +96,85 @@ function question1(event) {
   cEl.setAttribute("style", "display: block");
   document.querySelector("#d").textContent = "12";
   dEl.setAttribute("style", "display: block");
-  aEl.addEventListener("click", function a() {
+  aEl.addEventListener("click", clickA);
+  bEl.addEventListener("click", clickB);
+  cEl.addEventListener("click", clickC);
+  dEl.addEventListener("click", clickD);
+
+  function clickA(event) {
     document.querySelector("#a").textContent = "WRONG!";
     aEl.setAttribute("style", "background-color: red; display: block");
     secondsLeft -= 5;
     wrong.play();
     setTimeout(question2, 750);
-  });
-  bEl.addEventListener("click", function b() {
+    reset();
+    return;
+  }
+
+  function clickB(event) {
     document.querySelector("#b").textContent = "WRONG!";
     bEl.setAttribute("style", "background-color: red; display: block");
     secondsLeft -= 5;
     wrong.play();
     setTimeout(question2, 750);
-  });
-  cEl.addEventListener("click", function c() {
+    reset();
+    return;
+  }
+
+  function clickC(event) {
     document.querySelector("#c").textContent = "WRONG!";
     cEl.setAttribute("style", "background-color: red; display: block");
     secondsLeft -= 5;
     wrong.play();
     setTimeout(question2, 750);
-  });
-  dEl.addEventListener("click", function d() {
+    removeEventListener("click", clickC);
+    reset();
+    return;
+  }
+
+  function clickD(event) {
     document.querySelector("#d").textContent = "CORRECT!";
     dEl.setAttribute("style", "background-color: green; display: block");
     right.play();
     setTimeout(question2, 750);
-  });
+    removeEventListener("click", clickD);
+    reset();
+    return;
+  }
+  function reset(event) {
+    aEl.removeEventListener("click", clickA);
+    bEl.removeEventListener("click", clickB);
+    cEl.removeEventListener("click", clickC);
+    dEl.removeEventListener("click", clickD);
+  }
 }
 
+function reset(event) {
+  aEl.removeEventListener("click", clickA);
+  bEl.removeEventListener("click", clickB);
+  cEl.removeEventListener("click", clickC);
+  dEl.removeEventListener("click", clickD);
+}
+
+// function clear1() {
+//   var resetA = document.querySelector(".ans");
+//   resetAClone = resetA.cloneNode(true);
+// var resetA = document.getElementById("a"),
+//   resetAClone = resetA.cloneNode(true);
+// resetA.parentNode.replaceChild(resetAClone, resetA);
+// var resetB = document.getElementById("b"),
+//   resetBClone = resetB.cloneNode(true);
+// resetB.parentNode.replaceChild(resetBClone, resetB);
+// var resetC = document.getElementById("c"),
+//   resetCClone = resetC.cloneNode(true);
+// resetC.parentNode.replaceChild(resetCClone, resetC);
+// var resetD = document.getElementById("d"),
+//   resetDClone = resetB.cloneNode(true);
+// resetD.parentNode.replaceChild(resetDClone, resetD);
+// }
+
 function question2(event) {
+  // event.stopPropagation;
   document.querySelector("#query").textContent =
     "What is the capital of Kosovo?";
   queryEl.setAttribute("style", "display: block");
@@ -97,37 +186,54 @@ function question2(event) {
   cEl.setAttribute("style", "display: block");
   document.querySelector("#d").textContent = "Tirana";
   dEl.setAttribute("style", "display: block");
-  aEl.addEventListener("click", function () {
+  aEl.addEventListener("click", clickA);
+  bEl.addEventListener("click", clickB);
+  cEl.addEventListener("click", clickC);
+  dEl.addEventListener("click", clickD);
+
+  function clickA(event) {
     document.querySelector("#a").textContent = "WRONG!";
     aEl.setAttribute("style", "background-color: red; display: block");
     secondsLeft -= 5;
     wrong.play();
     setTimeout(question3, 750);
-  });
-  bEl.addEventListener("click", function () {
+    reset();
+  }
+  function clickB(event) {
     document.querySelector("#b").textContent = "CORRECT!";
     bEl.setAttribute("style", "background-color: green; display: block");
-    secondsLeft -= 5;
     right.play();
     setTimeout(question3, 750);
-  });
-  cEl.addEventListener("click", function () {
+    reset();
+  }
+  function clickC(event) {
+    event.stopPropagation();
     document.querySelector("#c").textContent = "WRONG!";
     cEl.setAttribute("style", "background-color: red; display: block");
     secondsLeft -= 5;
     wrong.play();
     setTimeout(question3, 750);
-  });
-  dEl.addEventListener("click", function () {
+    reset();
+  }
+  function clickD(event) {
+    event.stopPropagation();
     document.querySelector("#d").textContent = "WRONG!";
     dEl.setAttribute("style", "background-color: red; display: block");
     secondsLeft -= 5;
     wrong.play();
     setTimeout(question3, 750);
-  });
+    reset();
+  }
+  function reset(event) {
+    aEl.removeEventListener("click", clickA);
+    bEl.removeEventListener("click", clickB);
+    cEl.removeEventListener("click", clickC);
+    dEl.removeEventListener("click", clickD);
+  }
 }
 
 function question3(event) {
+  // event.stopPropagation();
   document.querySelector("#query").textContent =
     "Rosa Parks played a key role in which landmark civil rights protest?";
   queryEl.setAttribute("style", "display: block");
@@ -139,33 +245,52 @@ function question3(event) {
   cEl.setAttribute("style", "display: block");
   document.querySelector("#d").textContent = "The Voting Rights Act of 1968";
   dEl.setAttribute("style", "display: block");
-  aEl.addEventListener("click", function () {
+  aEl.addEventListener("click", clickA);
+  bEl.addEventListener("click", clickB);
+  cEl.addEventListener("click", clickC);
+  dEl.addEventListener("click", clickD);
+
+  function clickA(event) {
     document.querySelector("#a").textContent = "WRONG!";
     aEl.setAttribute("style", "background-color: red; display: block");
     secondsLeft -= 5;
     wrong.play();
     setTimeout(question4, 750);
-  });
-  bEl.addEventListener("click", function () {
+    reset();
+  }
+
+  function clickB(event) {
     document.querySelector("#b").textContent = "WRONG!";
     bEl.setAttribute("style", "background-color: red; display: block");
     secondsLeft -= 5;
     wrong.play();
     setTimeout(question4, 750);
-  });
-  cEl.addEventListener("click", function () {
+    reset();
+  }
+
+  function clickC(event) {
     document.querySelector("#c").textContent = "CORRECT!";
     cEl.setAttribute("style", "background-color: green; display: block");
     right.play();
     setTimeout(question4, 750);
-  });
-  dEl.addEventListener("click", function () {
+    reset();
+  }
+
+  function clickD(event) {
     document.querySelector("#d").textContent = "WRONG!";
     dEl.setAttribute("style", "background-color: red; display: block");
     secondsLeft -= 5;
     wrong.play();
     setTimeout(question4, 750);
-  });
+    reset();
+  }
+
+  function reset(event) {
+    aEl.removeEventListener("click", clickA);
+    bEl.removeEventListener("click", clickB);
+    cEl.removeEventListener("click", clickC);
+    dEl.removeEventListener("click", clickD);
+  }
 }
 
 function question4(event) {
@@ -179,33 +304,52 @@ function question4(event) {
   cEl.setAttribute("style", "display: block");
   document.querySelector("#d").textContent = "281 m/s";
   dEl.setAttribute("style", "display: block");
-  aEl.addEventListener("click", function () {
+  aEl.addEventListener("click", clickA);
+  bEl.addEventListener("click", clickB);
+  cEl.addEventListener("click", clickC);
+  dEl.addEventListener("click", clickD);
+
+  function clickA(event) {
     document.querySelector("#a").textContent = "CORRECT!";
     aEl.setAttribute("style", "background-color: green; display: block");
     right.play();
     setTimeout(question5, 750);
-  });
-  bEl.addEventListener("click", function () {
+    reset();
+  }
+
+  function clickB(event) {
     document.querySelector("#b").textContent = "WRONG!";
     bEl.setAttribute("style", "background-color: red; display: block");
     secondsLeft -= 5;
     wrong.play();
     setTimeout(question5, 750);
-  });
-  cEl.addEventListener("click", function () {
+    reset();
+  }
+
+  function clickC(event) {
     document.querySelector("#c").textContent = "WRONG!";
     cEl.setAttribute("style", "background-color: red; display: block");
     secondsLeft -= 5;
     wrong.play();
     setTimeout(question5, 750);
-  });
-  dEl.addEventListener("click", function () {
+    reset();
+  }
+
+  function clickD(event) {
     document.querySelector("#d").textContent = "WRONG!";
     dEl.setAttribute("style", "background-color: red; display: block");
     secondsLeft -= 5;
     wrong.play();
     setTimeout(question5, 750);
-  });
+    reset();
+  }
+
+  function reset(event) {
+    aEl.removeEventListener("click", clickA);
+    bEl.removeEventListener("click", clickB);
+    cEl.removeEventListener("click", clickC);
+    dEl.removeEventListener("click", clickD);
+  }
 }
 
 function question5(event) {
@@ -220,33 +364,52 @@ function question5(event) {
   cEl.setAttribute("style", "display: block");
   document.querySelector("#d").textContent = "The Sting";
   dEl.setAttribute("style", "display: block");
-  aEl.addEventListener("click", function () {
+  aEl.addEventListener("click", clickA);
+  bEl.addEventListener("click", clickB);
+  cEl.addEventListener("click", clickC);
+  dEl.addEventListener("click", clickD);
+
+  function clickA(event) {
     document.querySelector("#a").textContent = "WRONG!";
     aEl.setAttribute("style", "background-color: red; display: block");
     wrong.play();
     secondsLeft -= 5;
     setTimeout(question6, 750);
-  });
-  bEl.addEventListener("click", function () {
+    reset();
+  }
+
+  function clickB(event) {
     document.querySelector("#b").textContent = "WRONG!";
     bEl.setAttribute("style", "background-color: red; display: block");
     secondsLeft -= 5;
     wrong.play();
     setTimeout(question6, 750);
-  });
-  cEl.addEventListener("click", function () {
+    reset();
+  }
+
+  function clickC(event) {
     document.querySelector("#c").textContent = "WRONG!";
     cEl.setAttribute("style", "background-color: red; display: block");
     secondsLeft -= 5;
     wrong.play();
     setTimeout(question6, 750);
-  });
-  dEl.addEventListener("click", function () {
+    reset();
+  }
+
+  function clickD(event) {
     document.querySelector("#d").textContent = "CORRECT!";
     dEl.setAttribute("style", "background-color: green; display: block");
     right.play();
     setTimeout(question6, 750);
-  });
+    reset();
+  }
+
+  function reset(event) {
+    aEl.removeEventListener("click", clickA);
+    bEl.removeEventListener("click", clickB);
+    cEl.removeEventListener("click", clickC);
+    dEl.removeEventListener("click", clickD);
+  }
 }
 
 function question6(event) {
@@ -261,33 +424,52 @@ function question6(event) {
   cEl.setAttribute("style", "display: block");
   document.querySelector("#d").textContent = "Sitka spruce";
   dEl.setAttribute("style", "display: block");
-  aEl.addEventListener("click", function () {
+  aEl.addEventListener("click", clickA);
+  bEl.addEventListener("click", clickB);
+  cEl.addEventListener("click", clickC);
+  dEl.addEventListener("click", clickD);
+
+  function clickA(event) {
     document.querySelector("#a").textContent = "WRONG!";
     aEl.setAttribute("style", "background-color: red; display: block");
     wrong.play();
     secondsLeft -= 5;
     setTimeout(gameOver, 750);
-  });
-  bEl.addEventListener("click", function () {
+    reset();
+  }
+
+  function clickB(event) {
     document.querySelector("#b").textContent = "CORRECT!";
     bEl.setAttribute("style", "background-color: green; display: block");
     right.play();
     setTimeout(gameOver, 750);
-  });
-  cEl.addEventListener("click", function () {
+    reset();
+  }
+
+  function clickC(event) {
     document.querySelector("#c").textContent = "WRONG!";
     cEl.setAttribute("style", "background-color: red; display: block");
     secondsLeft -= 5;
     wrong.play();
     setTimeout(gameOver, 750);
-  });
-  dEl.addEventListener("click", function () {
+    reset();
+  }
+
+  function clickD(event) {
     document.querySelector("#d").textContent = "WRONG!";
     dEl.setAttribute("style", "background-color: red; display: block");
     secondsLeft -= 5;
     wrong.play();
     setTimeout(gameOver, 750);
-  });
+    reset();
+  }
+
+  function reset(event) {
+    aEl.removeEventListener("click", clickA);
+    bEl.removeEventListener("click", clickB);
+    cEl.removeEventListener("click", clickC);
+    dEl.removeEventListener("click", clickD);
+  }
 }
 
 function gameOver(event) {
