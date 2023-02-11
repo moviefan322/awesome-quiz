@@ -29,8 +29,10 @@ function setTime() {
     secondsLeft--;
     timerEl.textContent = secondsLeft;
 
-    if (secondsLeft === 0 || secondsLeft < 0) {
+    if (secondsLeft === 0) {
       clearInterval(timerInterval);
+      alert("You are out of time");
+      gameOver();
     }
   }, 1000);
 }
@@ -88,7 +90,7 @@ function question1(event) {
   document.querySelector("#query").textContent =
     "How many fingers do pandas have?";
   queryEl.setAttribute("style", "display: block");
-  document.querySelector("#a").textContent = "5";
+  document.querySelector("#a").textContent = "15";
   aEl.setAttribute("style", "display: block");
   document.querySelector("#b").textContent = "6";
   bEl.setAttribute("style", "display: block");
@@ -104,7 +106,7 @@ function question1(event) {
   function clickA(event) {
     document.querySelector("#a").textContent = "WRONG!";
     aEl.setAttribute("style", "background-color: red; display: block");
-    secondsLeft -= 5;
+    secondsLeft -= 15;
     wrong.play();
     setTimeout(question2, 750);
     reset();
@@ -114,7 +116,7 @@ function question1(event) {
   function clickB(event) {
     document.querySelector("#b").textContent = "WRONG!";
     bEl.setAttribute("style", "background-color: red; display: block");
-    secondsLeft -= 5;
+    secondsLeft -= 15;
     wrong.play();
     setTimeout(question2, 750);
     reset();
@@ -124,7 +126,7 @@ function question1(event) {
   function clickC(event) {
     document.querySelector("#c").textContent = "WRONG!";
     cEl.setAttribute("style", "background-color: red; display: block");
-    secondsLeft -= 5;
+    secondsLeft -= 15;
     wrong.play();
     setTimeout(question2, 750);
     removeEventListener("click", clickC);
@@ -194,7 +196,7 @@ function question2(event) {
   function clickA(event) {
     document.querySelector("#a").textContent = "WRONG!";
     aEl.setAttribute("style", "background-color: red; display: block");
-    secondsLeft -= 5;
+    secondsLeft -= 15;
     wrong.play();
     setTimeout(question3, 750);
     reset();
@@ -210,7 +212,7 @@ function question2(event) {
     event.stopPropagation();
     document.querySelector("#c").textContent = "WRONG!";
     cEl.setAttribute("style", "background-color: red; display: block");
-    secondsLeft -= 5;
+    secondsLeft -= 15;
     wrong.play();
     setTimeout(question3, 750);
     reset();
@@ -219,7 +221,7 @@ function question2(event) {
     event.stopPropagation();
     document.querySelector("#d").textContent = "WRONG!";
     dEl.setAttribute("style", "background-color: red; display: block");
-    secondsLeft -= 5;
+    secondsLeft -= 15;
     wrong.play();
     setTimeout(question3, 750);
     reset();
@@ -253,7 +255,7 @@ function question3(event) {
   function clickA(event) {
     document.querySelector("#a").textContent = "WRONG!";
     aEl.setAttribute("style", "background-color: red; display: block");
-    secondsLeft -= 5;
+    secondsLeft -= 15;
     wrong.play();
     setTimeout(question4, 750);
     reset();
@@ -262,7 +264,7 @@ function question3(event) {
   function clickB(event) {
     document.querySelector("#b").textContent = "WRONG!";
     bEl.setAttribute("style", "background-color: red; display: block");
-    secondsLeft -= 5;
+    secondsLeft -= 15;
     wrong.play();
     setTimeout(question4, 750);
     reset();
@@ -279,7 +281,7 @@ function question3(event) {
   function clickD(event) {
     document.querySelector("#d").textContent = "WRONG!";
     dEl.setAttribute("style", "background-color: red; display: block");
-    secondsLeft -= 5;
+    secondsLeft -= 15;
     wrong.play();
     setTimeout(question4, 750);
     reset();
@@ -320,7 +322,7 @@ function question4(event) {
   function clickB(event) {
     document.querySelector("#b").textContent = "WRONG!";
     bEl.setAttribute("style", "background-color: red; display: block");
-    secondsLeft -= 5;
+    secondsLeft -= 15;
     wrong.play();
     setTimeout(question5, 750);
     reset();
@@ -329,7 +331,7 @@ function question4(event) {
   function clickC(event) {
     document.querySelector("#c").textContent = "WRONG!";
     cEl.setAttribute("style", "background-color: red; display: block");
-    secondsLeft -= 5;
+    secondsLeft -= 15;
     wrong.play();
     setTimeout(question5, 750);
     reset();
@@ -338,7 +340,7 @@ function question4(event) {
   function clickD(event) {
     document.querySelector("#d").textContent = "WRONG!";
     dEl.setAttribute("style", "background-color: red; display: block");
-    secondsLeft -= 5;
+    secondsLeft -= 15;
     wrong.play();
     setTimeout(question5, 750);
     reset();
@@ -373,7 +375,7 @@ function question5(event) {
     document.querySelector("#a").textContent = "WRONG!";
     aEl.setAttribute("style", "background-color: red; display: block");
     wrong.play();
-    secondsLeft -= 5;
+    secondsLeft -= 15;
     setTimeout(question6, 750);
     reset();
   }
@@ -381,7 +383,7 @@ function question5(event) {
   function clickB(event) {
     document.querySelector("#b").textContent = "WRONG!";
     bEl.setAttribute("style", "background-color: red; display: block");
-    secondsLeft -= 5;
+    secondsLeft -= 15;
     wrong.play();
     setTimeout(question6, 750);
     reset();
@@ -390,7 +392,7 @@ function question5(event) {
   function clickC(event) {
     document.querySelector("#c").textContent = "WRONG!";
     cEl.setAttribute("style", "background-color: red; display: block");
-    secondsLeft -= 5;
+    secondsLeft -= 15;
     wrong.play();
     setTimeout(question6, 750);
     reset();
@@ -433,7 +435,7 @@ function question6(event) {
     document.querySelector("#a").textContent = "WRONG!";
     aEl.setAttribute("style", "background-color: red; display: block");
     wrong.play();
-    secondsLeft -= 5;
+    secondsLeft -= 15;
     setTimeout(gameOver, 750);
     reset();
   }
@@ -449,7 +451,7 @@ function question6(event) {
   function clickC(event) {
     document.querySelector("#c").textContent = "WRONG!";
     cEl.setAttribute("style", "background-color: red; display: block");
-    secondsLeft -= 5;
+    secondsLeft -= 15;
     wrong.play();
     setTimeout(gameOver, 750);
     reset();
@@ -458,7 +460,7 @@ function question6(event) {
   function clickD(event) {
     document.querySelector("#d").textContent = "WRONG!";
     dEl.setAttribute("style", "background-color: red; display: block");
-    secondsLeft -= 5;
+    secondsLeft -= 15;
     wrong.play();
     setTimeout(gameOver, 750);
     reset();
@@ -477,8 +479,8 @@ function gameOver(event) {
   queryEl.setAttribute("style", "display: block");
   document.querySelector("#a").textContent = "You have a lot to learn, kid";
   aEl.setAttribute("style", "display: none");
-  document.querySelector("#b").textContent = "Ponderosa pine";
-  bEl.setAttribute("style", "display: none");
+  document.querySelector("#b").textContent = "Play Again?";
+  bEl.setAttribute("style", "background-color: green; display: none");
   document.querySelector("#c").textContent = "Sugar maple";
   cEl.setAttribute("style", "display: none");
   document.querySelector("#d").textContent = "Sitka spruce";
