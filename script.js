@@ -294,7 +294,7 @@ function gameOver(event) {
   document.querySelector("#query").textContent = "End of Quiz";
   queryEl.setAttribute("style", "display: block");
   document.querySelector("#a").textContent = "You have a lot to learn, kid";
-  aEl.setAttribute("style", "display: block");
+  aEl.setAttribute("style", "display: none");
   document.querySelector("#b").textContent = "Ponderosa pine";
   bEl.setAttribute("style", "display: none");
   document.querySelector("#c").textContent = "Sugar maple";
