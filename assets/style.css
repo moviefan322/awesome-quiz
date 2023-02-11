@@ -57,14 +57,15 @@ main h2 {
   border: black 4px solid;
   border-radius: 250px;
   display: none;
+  font-size: 1.5em;
 }
 
 main p {
   color: rgb(255, 255, 255);
   text-align: left;
   padding-left: 2em;
-  margin-top: 1em;
-  margin-bottom: 1em;
+  /* margin-top: 1em;
+  margin-bottom: 1em; */
   background-color: rgb(82, 3, 82);
   padding-top: 1em;
   padding-bottom: 1em;
@@ -72,4 +73,10 @@ main p {
   border: rgb(0, 255, 0) 3px dashed;
   border-radius: 100px;
   display: none;
+}
+
+main p:hover {
+  background-color: yellow;
+  border: white 5px solid;
+  color: black;
 }
