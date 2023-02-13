@@ -5,34 +5,43 @@ var aEl = document.querySelector("#a");
 var bEl = document.querySelector("#b");
 var cEl = document.querySelector("#c");
 var dEl = document.querySelector("#d");
+var formEl = document.querySelector["#form"];
+var usernameInput = document.querySelector["#username"];
+var submitEl = document.querySelector["#submitButton"];
+// var nameEl = document.querySelector["#name"];
 var wrong = new Audio("./assets/wrong.mp3");
 var right = new Audio("./assets/right.mp3");
 //timer
 
 var timerEl = document.querySelector("#timer");
-
-//body h2
-//body p
-
-//-------variables
-
-//quiz items
-//user selection
-//timer increment
-
-//---------functions
-
 var secondsLeft = 45;
+var timerInterval = "";
+var savedScore = localStorage.getItem("score");
+
+// console.log(submitEl);
+
+// submitEl.addEventListener("submit", saveScore);
+
+// function saveScore(event) {
+//   event.preventDefault();
+
+//   var highScore = {
+//     user: usernameInput.value,
+//     score: secondsLeft,
+//   };
+
+//   localStorage.setItem("score", JSON.stringify(highScore));
+// }
 
 function setTime() {
-  var timerInterval = setInterval(function () {
+  timerInterval = setInterval(function () {
     secondsLeft--;
     timerEl.textContent = secondsLeft;
 
-    if (secondsLeft === 0) {
+    if (secondsLeft === 0 || secondsLeft < 0) {
       clearInterval(timerInterval);
+      secondsLeft = 1;
       alert("You are out of time");
-      gameOver();
     }
   }, 1000);
 }
@@ -40,10 +49,16 @@ function setTime() {
 function startQuiz(event) {
   document.querySelector("#a").textContent = "Start Quiz";
   aEl.setAttribute("style", "display: block");
-  aEl.addEventListener("click", function () {
+  aEl.addEventListener("click", clickA);
+
+  function clickA(event) {
     setTime();
     question1();
-  });
+    reset();
+  }
+  function reset(event) {
+    aEl.removeEventListener("click", clickA);
+  }
 }
 
 // function question1(event) {
@@ -92,9 +107,9 @@ function question1(event) {
   queryEl.setAttribute("style", "display: block");
   document.querySelector("#a").textContent = "15";
   aEl.setAttribute("style", "display: block");
-  document.querySelector("#b").textContent = "6";
+  document.querySelector("#b").textContent = "5";
   bEl.setAttribute("style", "display: block");
-  document.querySelector("#c").textContent = "8";
+  document.querySelector("#c").textContent = "10";
   cEl.setAttribute("style", "display: block");
   document.querySelector("#d").textContent = "12";
   dEl.setAttribute("style", "display: block");
@@ -176,7 +191,6 @@ function reset(event) {
 // }
 
 function question2(event) {
-  // event.stopPropagation;
   document.querySelector("#query").textContent =
     "What is the capital of Kosovo?";
   queryEl.setAttribute("style", "display: block");
@@ -194,6 +208,7 @@ function question2(event) {
   dEl.addEventListener("click", clickD);
 
   function clickA(event) {
+    event.stopPropagation();
     document.querySelector("#a").textContent = "WRONG!";
     aEl.setAttribute("style", "background-color: red; display: block");
     secondsLeft -= 15;
@@ -202,6 +217,7 @@ function question2(event) {
     reset();
   }
   function clickB(event) {
+    event.stopPropagation();
     document.querySelector("#b").textContent = "CORRECT!";
     bEl.setAttribute("style", "background-color: green; display: block");
     right.play();
@@ -475,6 +491,7 @@ function question6(event) {
 }
 
 function gameOver(event) {
+  clearInterval(timerInterval);
   document.querySelector("#query").textContent = "End of Quiz";
   queryEl.setAttribute("style", "display: block");
   document.querySelector("#a").textContent = "You have a lot to learn, kid";
@@ -485,13 +502,8 @@ function gameOver(event) {
   cEl.setAttribute("style", "display: none");
   document.querySelector("#d").textContent = "Sitka spruce";
   dEl.setAttribute("style", "display: none");
+  document.querySelector("#form").setAttribute("style", "display: block");
 }
-
-//-------user input
-
-//click start
-//select question answers
-//save high score
 
 //-----initialization
 
