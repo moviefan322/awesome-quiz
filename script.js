@@ -5,9 +5,10 @@ var aEl = document.querySelector("#a");
 var bEl = document.querySelector("#b");
 var cEl = document.querySelector("#c");
 var dEl = document.querySelector("#d");
-var formEl = document.querySelector["#form"];
-var usernameInput = document.querySelector["#username"];
-var submitEl = document.querySelector["#submitButton"];
+var formEl = document.querySelector("#form");
+var usernameInput = document.querySelector("#username");
+var submitEl = document.querySelector("#submitButton");
+var bestScoreEl = document.querySelector("#bestScore");
 // var nameEl = document.querySelector["#name"];
 var wrong = new Audio("./assets/wrong.mp3");
 var right = new Audio("./assets/right.mp3");
@@ -17,21 +18,32 @@ var timerEl = document.querySelector("#timer");
 var secondsLeft = 45;
 var timerInterval = "";
 var savedScore = localStorage.getItem("score");
+var savedName = localStorage.getItem("name");
 
-// console.log(submitEl);
+function displayScores() {
+  document.querySelector("#query").textContent = "High Scores";
+  queryEl.setAttribute("style", "display: block");
+  document.querySelector("#a").textContent = savedName + ": " + savedScore;
+  aEl.setAttribute("style", "display: block");
+}
 
-// submitEl.addEventListener("submit", saveScore);
+console.log(submitEl);
 
-// function saveScore(event) {
-//   event.preventDefault();
+submitEl.addEventListener("click", function (event) {
+  event.preventDefault();
 
-//   var highScore = {
-//     user: usernameInput.value,
-//     score: secondsLeft,
-//   };
+  var userName = usernameInput.value;
 
-//   localStorage.setItem("score", JSON.stringify(highScore));
-// }
+  console.log(userName);
+
+  localStorage.setItem("name", userName);
+  localStorage.setItem("score", secondsLeft);
+  document.querySelector("#query").textContent = "High Scores";
+  queryEl.setAttribute("style", "display: block");
+  document.querySelector("#a").textContent = savedName + ": " + savedScore;
+  aEl.setAttribute("style", "display: block");
+  formEl.setAttribute("style", "display: none");
+});
 
 function setTime() {
   timerInterval = setInterval(function () {

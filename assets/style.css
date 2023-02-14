@@ -4,6 +4,10 @@
   margin: auto;
 }
 
+#hiScore {
+  visibility: hidden;
+}
+
 body {
   background-color: rgb(235, 232, 197);
 }
