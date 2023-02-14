@@ -20,6 +20,8 @@ var timerInterval = "";
 var savedScore = localStorage.getItem("score");
 var savedName = localStorage.getItem("name");
 
+//save high score
+
 function displayScores() {
   document.querySelector("#query").textContent = "High Scores";
   queryEl.setAttribute("style", "display: block");
@@ -29,12 +31,22 @@ function displayScores() {
 
 console.log(submitEl);
 
+//enter name
+
 submitEl.addEventListener("click", function (event) {
   event.preventDefault();
 
+  // get user name
+
   var userName = usernameInput.value;
 
+  // update user name variable and score variable
+  savedName = userName;
+  savedScore = secondsLeft;
+
   console.log(userName);
+
+  //store name and score
 
   localStorage.setItem("name", userName);
   localStorage.setItem("score", secondsLeft);
@@ -54,6 +66,7 @@ function setTime() {
       clearInterval(timerInterval);
       secondsLeft = 1;
       alert("You are out of time");
+      window.location.replace("index.html");
     }
   }, 1000);
 }
